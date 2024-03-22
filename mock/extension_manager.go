@@ -9,11 +9,11 @@ type ExtensionManager struct {
 	InstallExtensionsSpy []exact.Extension
 }
 
-func (e ExtensionManager) List() ([]exact.Extension, error) {
+func (e *ExtensionManager) List() ([]exact.Extension, error) {
 	return e.ListExtensionsStub, nil
 }
 
-func (e ExtensionManager) Install(extensions []exact.Extension, v exact.Versioning) error {
+func (e *ExtensionManager) Install(extensions []exact.Extension, v exact.Versioning) error {
 	e.InstallExtensionsSpy = extensions
 	return nil
 }

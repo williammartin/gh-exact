@@ -5,12 +5,14 @@ import (
 )
 
 type ManifestStorage struct {
+	storedManifest exact.Manifest
 }
 
-func (m ManifestStorage) Store(manifest exact.Manifest) error {
+func (m *ManifestStorage) Store(manifest exact.Manifest) error {
+	m.storedManifest = manifest
 	return nil
 }
 
-func (m ManifestStorage) Load() (exact.Manifest, error) {
-	return exact.Manifest{}, nil
+func (m *ManifestStorage) Load() (exact.Manifest, error) {
+	return m.storedManifest, nil
 }

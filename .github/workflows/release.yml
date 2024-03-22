@@ -14,3 +14,4 @@ jobs:
       - uses: cli/gh-extension-precompile@v1
         with:
           go_version: "1.22"
+          build_script_override: "script/build.sh"

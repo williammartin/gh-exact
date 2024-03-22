@@ -1,8 +1,20 @@
 package exact
 
+import "time"
+
 type ExtensionManager interface {
 	List() ([]Extension, error)
 	Install(extensions []Extension, versioning Versioning) error
+}
+
+type ManifestStorage interface {
+	Store(manifest Manifest) error
+	Load() (Manifest, error)
+}
+
+type Manifest struct {
+	CreatedAt  time.Time
+	Extensions []Extension
 }
 
 type Extension struct {

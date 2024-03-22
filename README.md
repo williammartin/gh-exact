@@ -15,11 +15,11 @@ gh ext install williammartin/gh-exact
 ## Usage
 
 ```
-gh exact dump -f extensions.yaml
+gh exact dump -f manifest.yaml
 ```
 
 ```
-gh exact restore -f extensions.yaml [--pin]
+gh exact restore -f manifest.yaml [--pin]
 ```
 
 Without `--pin` the latest version of each extension will be installed. With `--pin` the exact version you dumped will be restored, but this will also be **pinned** as if you did `gh ext install --pin`.

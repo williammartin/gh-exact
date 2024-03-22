@@ -8,6 +8,7 @@ import (
 	"github.com/spf13/cobra"
 	exact "github.com/williammartin/gh-exact"
 	"github.com/williammartin/gh-exact/cli"
+	"github.com/williammartin/gh-exact/fs"
 )
 
 func main() {
@@ -19,10 +20,12 @@ func main() {
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			app := exact.App{
-				FilePath: filePath,
 				ExtensionManager: cli.ExtensionManager{
 					Out: os.Stdout,
 					Err: os.Stderr,
+				},
+				ManifestStorage: fs.ManifestStorage{
+					FilePath: filePath,
 				},
 			}
 
@@ -37,10 +40,12 @@ func main() {
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			app := exact.App{
-				FilePath: filePath,
 				ExtensionManager: cli.ExtensionManager{
 					Out: os.Stdout,
 					Err: os.Stderr,
+				},
+				ManifestStorage: fs.ManifestStorage{
+					FilePath: filePath,
 				},
 			}
 

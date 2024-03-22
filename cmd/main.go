@@ -31,9 +31,9 @@ func main() {
 	}
 
 	var pin bool
-	cmdInstall := &cobra.Command{
-		Use:   "install",
-		Short: "Install extensions from a file",
+	cmdRestore := &cobra.Command{
+		Use:   "restore",
+		Short: "Restore extensions from a file",
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			app := exact.App{
@@ -49,15 +49,15 @@ func main() {
 				versioning = exact.PinVersions
 			}
 
-			return app.Install(versioning)
+			return app.Restore(versioning)
 		},
 	}
-	cmdInstall.Flags().BoolVarP(&pin, "pin", "p", false, "Pin the extension versions")
+	cmdRestore.Flags().BoolVarP(&pin, "pin", "p", false, "Pin the extension versions")
 
 	rootCmd := &cobra.Command{Use: "gh-exact"}
 	rootCmd.PersistentFlags().StringVarP(&filePath, "file", "f", "extensions.yaml", "extension file path (default: extensions.yaml)")
 
-	rootCmd.AddCommand(cmdSave, cmdInstall)
+	rootCmd.AddCommand(cmdSave, cmdRestore)
 	if err := rootCmd.ExecuteContext(context.Background()); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

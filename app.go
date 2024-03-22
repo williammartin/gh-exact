@@ -47,15 +47,15 @@ func (a App) Dump() error {
 	return nil
 }
 
-func (a App) Install(v Versioning) error {
+func (a App) Restore(v Versioning) error {
 	f, err := os.Open(a.FilePath)
 	if err != nil {
-		return fmt.Errorf("install: opening extensions: %v", err)
+		return fmt.Errorf("restore: opening extensions: %v", err)
 	}
 
 	var extensionDTOs []extensionDTO
 	if err := yaml.NewDecoder(f).Decode(&extensionDTOs); err != nil {
-		return fmt.Errorf("install: reading extensions: %v", err)
+		return fmt.Errorf("restore: reading extensions: %v", err)
 	}
 
 	extensions := make([]Extension, len(extensionDTOs))
@@ -68,7 +68,7 @@ func (a App) Install(v Versioning) error {
 	}
 
 	if err := a.ExtensionManager.Install(extensions, v); err != nil {
-		return fmt.Errorf("install: installing extensions: %v", err)
+		return fmt.Errorf("restore: installing extensions: %v", err)
 	}
 
 	return nil

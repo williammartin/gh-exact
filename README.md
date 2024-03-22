@@ -26,6 +26,6 @@ Without `--pin` the latest version of each extension will be installed. With `--
 
 ## Limitations
 
-Doesn't handle local extension installation.
-Doesn't handle installing specific extensions without pinning.
-Doesn't really do very good error reporting.
+* Doesn't handle local extension installation.
+* Doesn't handle installing specific extensions without pinning.
+* Doesn't really do very good error reporting or general communication about what it is doing really
